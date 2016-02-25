@@ -15,7 +15,7 @@
         android:orientation="vertical"  >
 
        <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/driv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/driv_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -46,7 +46,7 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/hire"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

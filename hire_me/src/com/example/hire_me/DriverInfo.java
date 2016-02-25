@@ -1,12 +1,12 @@
 package com.example.hire_me;
 
-public class driver_infos {
+public class DriverInfo {
 
 String d_name;
 String d_cost;
 String d_id;
 
-public driver_infos() {
+public DriverInfo() {
 	
 }
 public String getD_name() {
