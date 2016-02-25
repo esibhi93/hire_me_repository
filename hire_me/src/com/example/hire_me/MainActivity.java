@@ -19,6 +19,7 @@ public class MainActivity extends ActionBarActivity {
 	{
 		Intent intent=new Intent(MainActivity.this,driver_details_fetch.class);
 		startActivity(intent);
+		//ASDF
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

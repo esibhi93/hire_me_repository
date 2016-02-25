@@ -30,6 +30,8 @@ import android.widget.TextView;
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View itemView = inflater.inflate(groupid, parent, false);
 		Log.i(TAG,"driver_name");
+		String drivername=records.get(position).getD_name();
+		String driverCost=records.get(position).getD_cost();
 		TextView driver_name = (TextView) itemView.findViewById(R.id.driver_name);
 		driver_name.setText(""+records.get(position).getD_name());
 	

@@ -24,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+                <activity android:name=".driver_individual_details"></activity>
         <activity android:name=".driver_details_fetch"></activity>
     </application>
 

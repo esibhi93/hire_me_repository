@@ -2,22 +2,31 @@ package com.example.hire_me;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+import android.os.Bundle;
+import android.view.View; 
+import android.widget.AdapterView; 
+import android.widget.ListView; 
+import android.widget.Toast; 
+import android.widget.AdapterView.OnItemClickListener;
 import java.io.InputStream;
 
 import java.util.ArrayList;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.ListActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 
-import android.os.Bundle;
 
 import android.util.Log;
 
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 
@@ -36,7 +45,7 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 
 
-public class driver_details_fetch extends Activity{
+public class driver_details_fetch extends Activity  implements OnItemClickListener{
 
 	
 		public static final String TAG = " driver_details_fetch ";
@@ -62,6 +71,7 @@ public class driver_details_fetch extends Activity{
 		adapter=new CustomAdapter(context,R.layout.custom_row,R.id.driver_name
 				,records);
 		listProduct.setAdapter(adapter);
+		listProduct.setOnItemClickListener(this); 
 	}
 
 	public void onStart(){
@@ -116,7 +126,7 @@ public class driver_details_fetch extends Activity{
 				Log.e("ERROR", "Error converting result "+e.toString());
 				
 			}
-			d_info= new driver_infos();
+			
 			try{
 				Log.i(TAG,"jasonarray");
 				result=result.substring(result.indexOf("["));
@@ -126,23 +136,49 @@ public class driver_details_fetch extends Activity{
 					//Product p=new Product();
 					//p.setpName(json_data.getString("pname"));
 					//p.setuPrice(json_data.getInt("uprice"));
+					d_info= new driver_infos();
 					d_info.setD_name(json_data.getString("d_name"));
 					d_info.setD_cost(json_data.getString("cost_per_km"));
 					
 					records.add(d_info);
+					
 				}
 			}
+			
+			
 			catch(Exception e){
 				Log.e("ERROR", "Error pasting data "+e.toString());
 			}
+			
+			
+			
 			return null;
 		}
-
+		
+		@SuppressWarnings("unused")
+		public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long arg3) {
+		String item=	adapterView.getItemAtPosition(position).toString();
+			 Intent i = new Intent(getApplicationContext(), driver_individual_details.class);
+	         i.putExtra("litem", item);
+	         startActivity(i);
+		} 
+		
 		protected void onPostExecute(Void result){
 			if(pd!=null) pd.dismiss(); //close dialog
 			Log.e("size", records.size() + "");
+		
 			adapter.notifyDataSetChanged(); //notify the ListView to get new records
+			
 		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO Auto-generated method stub
+		String item=	arg0.getItemAtPosition(arg2).toString();
+		 Intent i = new Intent(getApplicationContext(), driver_individual_details.class);
+        i.putExtra("litem", item);
+        startActivity(i);
 	}
 
 	}
